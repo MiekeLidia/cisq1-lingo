@@ -32,7 +32,7 @@ Scenario Outline: Start a new round
 
 
 
-  Scenario Outline: Guessing a word
+Scenario Outline: Guessing a word
   Given I am playing a game
   And a "<word>" has been chosen
   When I try a "<guess>"
@@ -41,4 +41,29 @@ Scenario Outline: Start a new round
   Examples:
   | word | guess | feedback
 
+  Given I am playing a game
+  And I guesed a word correct
+  Then My score my score up's by "score"
 
+  Given I am playing a game
+  And I guesed 5 times
+  And I did not gues the right word
+  Then I have lost this round
+  And I can not try an other guess
+
+  Given I am playing a game
+  And the right word is guesed
+  Then I cannot guess agian
+
+  Given I am playing a game
+  And I am guessing
+  Then I cannot start a new round
+
+
+
+
+
+
+Scenario: No round without a game
+  When I have not started a game
+  Then I can not start a new round
