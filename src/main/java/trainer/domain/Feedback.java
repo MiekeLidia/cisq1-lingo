@@ -37,7 +37,7 @@ public class Feedback {
     }
 
 
-    public giveHint()
+
 
     @Override
     public boolean equals(Object o) {

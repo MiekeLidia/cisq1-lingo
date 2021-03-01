@@ -1,6 +1,7 @@
 package trainer.domain;
 
 import nl.hu.cisq1.lingo.words.domain.Mark;
+import nl.hu.cisq1.lingo.words.domain.Word;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -48,20 +49,34 @@ class FeedbackTest {
         assertFalse(feedback.isInvaloid(markList));
     }
 
-    @MethodSource("provideHintExamples ")
-    static Stream<Arguments> provideHintExamples() {
-        return Stream.of(
-                Arguments.of(A, B, C),
-                Arguments.of(D, E, F)
-        );
-    }
+
+
 
 
     @ParameterizedTest
-    @MethodSource({"marks", "previousHint ", "wordToGuess"})
+    @MethodSource({"provideHintExamples"})
     @DisplayName("geef hint")
-    void giveHint() {
+    void giveHint(List<Mark> marks, Feedback.previousHint, Word.wordToGuess) {
+        System.out.log(marks);
+        System.out.log(previousHint);
+        System.out.log(wordToGuess);
 
+
+    }
+
+    static Stream<Arguments> provideHintExamples() {
+        return Stream.of(
+                Arguments.of(
+                        List.of(Mark.INVALID, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT),
+                        List.of(Mark.INVALID, Mark.INVALID, Mark.CORRECT, Mark.CORRECT),
+                        "boek"
+                ),
+                Arguments.of(
+                        List.of(Mark.INVALID, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT),
+                        List.of(Mark.INVALID, Mark.INVALID, Mark.CORRECT, Mark.CORRECT),
+                        "boek"
+                )
+        );
     }
 
 
