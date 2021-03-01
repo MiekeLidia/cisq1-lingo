@@ -60,8 +60,6 @@ class FeedbackTest {
         System.out.log(marks);
         System.out.log(previousHint);
         System.out.log(wordToGuess);
-
-
     }
 
     static Stream<Arguments> provideHintExamples() {
