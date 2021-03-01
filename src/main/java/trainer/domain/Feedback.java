@@ -36,6 +36,9 @@ public class Feedback {
         return false;
     }
 
+
+    public giveHint()
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
