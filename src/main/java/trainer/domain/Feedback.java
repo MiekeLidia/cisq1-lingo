@@ -2,13 +2,14 @@ package trainer.domain;
 
 import nl.hu.cisq1.lingo.words.domain.Mark;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
 public class Feedback {
-    String attempt;
-    List<Mark> marks;
+    private String attempt;
+    private List<Mark> marks;
 
 
     public Feedback(String attempt, List<Mark> marks) {
@@ -17,15 +18,15 @@ public class Feedback {
     }
 
     public boolean isWordGuessed(List<Mark> marks) {
-        Predicate<Mark> p1 = m -> m == Mark.CORRECT;
-        return marks.stream().allMatch(p1);
+        Predicate<Mark> isMarkCorrect = m -> m == Mark.CORRECT;
+        return marks.stream().allMatch(isMarkCorrect);
 //        for (Mark mark : marks) {
 //            if (mark != Mark.CORRECT) {
 //                return false;
 //            }
         }
 
-    public boolean isInvaloid(List<Mark> marks) {
+    public boolean isInvalid(List<Mark> marks) {
 //        Predicate<Mark> p1 = m -> m == Mark.CORRECT;
 //        return marks.stream().allMatch(p1);
         for (Mark mark : marks) {
@@ -36,8 +37,23 @@ public class Feedback {
         return false;
     }
 
+    public String giveHint(String previousHint) {
+        String[] letters = this.attempt.split("");
+        List<String> hint = new ArrayList<>();
 
+        for (int i = 0; i < letters.length; i++) {
+            String letter = letters[i];
+            char previousHintLetter = previousHint.charAt(i);
 
+            if (marks.get(i) == Mark.CORRECT) {
+                hint.add(letter);
+            } else {
+                hint.add(String.valueOf(previousHintLetter));
+            }
+        }
+
+        return String.join("", hint);
+    }
 
     @Override
     public boolean equals(Object o) {
