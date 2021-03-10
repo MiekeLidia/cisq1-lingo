@@ -55,6 +55,10 @@ public class Feedback {
         return String.join("", hint);
     }
 
+    public List<Mark> getMarks() {
+        return marks;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
