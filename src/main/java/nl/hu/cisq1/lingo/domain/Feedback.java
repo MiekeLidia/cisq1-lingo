@@ -1,4 +1,4 @@
-package trainer.domain;
+package nl.hu.cisq1.lingo.domain;
 
 import nl.hu.cisq1.lingo.words.domain.Mark;
 
